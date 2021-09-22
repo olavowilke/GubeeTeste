@@ -1,0 +1,38 @@
+<div class='container-table'>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Toppings</mat-label>
+    <mat-select [formControl]="toppings" multiple>
+      <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="loadFilteredData()">Pesquisar</button>
+
+  <div class='container mat-elevation-z8' class='full-height'>
+    <mat-table class='mat-cell' #table [dataSource]="dataSource">
+      <ng-container matColumnDef='productName'>
+        <mat-header-cell *matHeaderCellDef>Product Name</mat-header-cell>
+        <mat-cell *matCellDef='let row'> {{ row?.productName }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef='description'>
+        <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+        <mat-cell *matCellDef='let row'> {{ row?.description }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef='targetMarket'>
+        <mat-header-cell *matHeaderCellDef>Target Market</mat-header-cell>
+        <mat-cell *matCellDef='let row'> {{ row?.targetMarket }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef='stack'>
+        <mat-header-cell *matHeaderCellDef>Stack</mat-header-cell>
+        <mat-cell *matCellDef='let row'> {{ row?.stack }}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef='displayedColumns'></mat-header-row>
+      <mat-row *matRowDef='let row; columns: displayedColumns'></mat-row>
+    </mat-table>
+  </div>
+</div>
